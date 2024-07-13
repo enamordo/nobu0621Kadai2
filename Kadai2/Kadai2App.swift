@@ -2,7 +2,7 @@
 //  Kadai2App.swift
 //  Kadai2
 //
-//  Created by 弓削　敦信 on 2024/07/10.
+//  Created by nobu0621 on 2024/07/10.
 //
 
 import SwiftUI
