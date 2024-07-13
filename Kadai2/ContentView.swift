@@ -11,17 +11,7 @@ struct ContentView: View {
     @State private var inputNumber1: String = ""
     @State private var inputNumber2: String = ""
     @State private var result: String = "Label"
-    
     @State private var selectedSign = CalculationSigns.plus
-
-    init() {
-            // 背景色
-        UISegmentedControl.appearance().backgroundColor = UIColor(Color.brown.opacity(0.1))
-            // 選択項目の背景色
-        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.red)
-            // 選択項目の文字色
-            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-        }
     
     var body: some View {
         VStack {
@@ -35,7 +25,22 @@ struct ContentView: View {
             .pickerStyle(.segmented)
             .padding()
             Button("Button") {
-                
+                let number1 = Float(inputNumber1) ?? 0
+                let number2 = Float(inputNumber2) ?? 0
+                switch selectedSign {
+                case .plus:
+                    result = String(number1 + number2)
+                case .minus:
+                    result = String(number1 - number2)
+                case .multiplied:
+                    result = String(number1 * number2)
+                case .divided:
+                    if number2 == 0 {
+                        result = "割る数には0以外を入力して下さい"
+                    } else {
+                        result = String(number1 / number2)
+                    }
+                }
             }
             HStack {
                 Label(result, systemImage: "bolt.fill").labelStyle(.titleOnly)
